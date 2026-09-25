@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grenze:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --color0: #2DE1C2;
+    --color1: #6AD5CB;
+    --colorNeutral0: #ebebeb;
+    --colorNeutral1: #85877C;
+    --colorText0: #0f0f0faa;
+    --colorText1: #7FBEAB;
+}
+
+body{
+    background-color: var(--colorNeutral0);
+}
+h1 {
+    color: var(--color0);
+    font-family: "Grenze", serif;
+    font-weight: 900;
+    text-align: center;
+}
+p {
+    color: var(--colorText0);
+    font-family: "Special Gothic", sans-serif;
+    font-family: 560;
+    font-style: normal;
+    text-align: justify;
+}
+h2{
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+}
+h3{
+    font-family: "Special Gothic", sans-serif;
+    font-family: 600;
+}
+a{
+    text-decoration: none;
+    color: var(--color1);
+}
+ul {
+    text-decoration: none;
+    list-style: none;
+}
