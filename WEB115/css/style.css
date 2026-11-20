@@ -1,0 +1,520 @@
+@import url('https://fonts.googleapis.com/css2?family=Medula+One&family=Pirata+One&family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Medula+One&family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Medula+One&display=swap');
+/* ============================================================
+   PORTFÓLIO — Yann Escobar (editor de vídeo)
+   Mobile-first. Cores e fontes ficam nas variáveis abaixo.
+   ============================================================ */
+ 
+:root {
+    --preto: #0b0a0f;
+    --grafite: #17141f;
+    --branco: #f6f3ee;
+    --roxo: #6b2bd9;
+    --roxo-claro: #f6f3ee;
+    --roxo-esc: #2a1250;
+    --vermelho: #e1062c;
+    --vermelho-txt: #ff6b7d;      /* vermelho claro: usar em texto pequeno sobre preto */
+ 
+    --vidro: rgba(255, 255, 255, 0.08);
+    --borda-vidro: rgba(255, 255, 255, 0.28);
+ 
+    --fonte-titulo: "Pirata One", cursive;
+    --fonte-mono: "Medula One", cursive;
+    --fonte-texto: "Space Mono", ui-monospace, Consolas, monospace;
+ 
+    --raio: 14px;
+    --gutter: clamp(16px, 5vw, 48px);
+}
+ 
+*, *::before, *::after { box-sizing: border-box; }
+ 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+}
+ 
+body {
+    margin: 0;
+    font-family: var(--fonte-texto);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--branco);
+    background: var(--preto);
+    -webkit-text-size-adjust: 100%;
+}
+ 
+img { max-width: 100%; height: auto; display: block; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, p { margin: 0; }
+p + p { margin-top: 0.9em; }
+ 
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+ 
+.pular {
+    position: absolute;
+    left: 8px;
+    top: -60px;
+    z-index: 100;
+    background: var(--branco);
+    color: var(--preto);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.pular:focus { top: 8px; }
+ 
+/* Foco visível em tudo */
+:focus-visible {
+    outline: 3px solid var(--roxo-claro);
+    outline-offset: 3px;
+}
+ 
+/* ---------- Vidro ---------- */
+.vidro {
+    position: relative;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 45%),
+        var(--vidro);
+    border: 1px solid var(--borda-vidro);
+    border-radius: var(--raio);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+ 
+/* ---------- Botões ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 10px 22px;
+    font-family: var(--fonte-mono);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--branco);
+    border: 2px solid var(--branco);
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--preto);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--preto); }
+.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--preto); }
+ 
+.btn-vermelho { background: var(--vermelho); }
+.btn-vermelho:hover { background: #ff1a3f; }
+.btn-vidro { background: rgba(255, 255, 255, 0.1); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.btn-vidro:hover { background: var(--roxo); }
+.btn-grande { min-height: 56px; font-size: 1.05rem; padding-inline: 32px; }
+ 
+/* ---------- Navegação ---------- */
+.topo {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(11, 10, 15, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--borda-vidro);
+}
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 56px;
+}
+
+.nav ul { display: flex; gap: 2px; }
+
+.logo {
+    font-family: var(--fonte-titulo);
+    font-size: 1.4rem;
+    color: var(--branco);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+}
+.nav a:not(.logo) {
+    display: inline-block;
+    padding: 12px 10px;
+    font-family: var(--fonte-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 4px;
+}
+.nav a:not(.logo):hover { background: var(--vermelho); }
+.nav a[aria-current="true"] { background: var(--vermelho); }
+ 
+@media (max-width: 480px) {
+    .logo { display: none; }
+    .nav { justify-content: center; }
+}
+@media (min-width: 700px) {
+    .nav a:not(.logo) { font-size: 0.85rem; padding-inline: 16px; }
+}
+ 
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    min-height: 88vh;
+    min-height: 60svh;
+    padding-block: 0px;
+    text-align: center;
+}
+
+/* Imagem de fundo*/
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: center top;
+    z-index: 0;
+}
+.hero .container { position: relative; z-index: 1; }
+ 
+.marcas {
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    color: var(--vermelho-txt);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-family: var(--fonte-titulo);
+    font-weight: 100;
+    font-size: clamp(3.6rem, 19vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 2px var(--branco);
+    -webkit-text-fill-color: var(--grafite);
+    text-shadow: 4px 6px 0 var(--vermelho);
+    transform: translateY(55%);
+    position: relative;
+    z-index: 2;
+}
+
+.container{
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 20px;
+}
+
+.sub {
+    margin-top: 18px;
+    display: inline-block;
+    background: linear-gradient(364deg, var(--roxo-esc), var(--grafite));
+    border-radius: 4px;
+    color: var(--branco);
+    text-shadow: var(--vermelho);
+    font-family: var(--fonte-mono);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 14px;
+    transform: rotate(-2deg);
+    
+}
+
+.lema {
+    margin-top: 14px;
+    font-size: 1.2rem;
+    color: var(--roxo-claro);
+}
+.acoes {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+ 
+/* ---------- Seções ---------- */
+.secao { padding-block: clamp(56px, 10vw, 110px); }
+ 
+.kicker {
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    color: var(--vermelho-txt);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+}
+.titulo-secao {
+    display: inline-block;
+    margin-bottom: 36px;
+    padding: 0.05em 0.45em;
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: clamp(2rem, 8vw, 3.4rem);
+    line-height: 1.15;
+    text-transform: uppercase;
+    background: var(--branco);
+    color: var(--preto);
+    transform: rotate(-1.5deg);
+    box-shadow: 6px 6px 0 var(--vermelho);
+}
+ 
+/* Revelação ao rolar (só quando o JS está ativo) */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.js .reveal.visible { opacity: 1; transform: none; }
+ 
+/* ---------- Quem sou eu ---------- */
+.quem {
+    display: grid;
+    gap: 28px;
+    align-items: center;
+}
+.quem-texto { padding: 24px; }
+.foto {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid var(--branco);
+    box-shadow: 8px 8px 0 var(--roxo);
+    transform: rotate(3deg);
+    margin-inline: auto;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.chips li {
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 12px;
+    background: var(--roxo);
+    border: 1px solid var(--branco);
+}
+@media (min-width: 760px) {
+    .quem { grid-template-columns: 1fr 240px; gap: 48px; }
+    .foto { width: 240px; height: 240px; }
+}
+ 
+/* ---------- Habilidades ---------- */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    perspective: 900px;
+}
+.skill {
+    padding: 22px 22px 18px;
+    transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotateZ(var(--rz, 0deg));
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+}
+/* Inclinação fixa para toque / sem mouse */
+.skill:nth-child(odd)  { --rz: -1deg; }
+.skill:nth-child(even) { --rz: 1deg; }
+ 
+.skill-num {
+    position: absolute;
+    right: 14px;
+    top: 6px;
+    font-family: var(--fonte-titulo);
+    font-size: 2.6rem;
+    color: rgba(255, 255, 255, 0.14);
+    line-height: 1;
+}
+.skill h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+    padding-right: 48px;
+}
+ 
+/* Barra de proficiência inclinada (estilo Persona) */
+.barra {
+    height: 18px;
+    background: var(--preto);
+    border: 2px solid var(--branco);
+    transform: skewX(-20deg);
+    overflow: hidden;
+}
+.barra i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--vermelho), #ff4d63);
+    transform-origin: left center;
+    transform: scaleX(calc(var(--nivel) / 100));
+    transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+}
+.js .barra i { transform: scaleX(0); }
+.js .reveal.visible .barra i { transform: scaleX(calc(var(--nivel) / 100)); }
+ 
+.nivel {
+    margin-top: 10px;
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    color: #d9d3e6;
+}
+.nivel strong { color: var(--branco); }
+ 
+/* ---------- Trabalhos ---------- */
+.trabalhos { display: grid; gap: 22px; }
+.trabalho { overflow: hidden; }
+.trabalho-info { padding: 22px; }
+.trabalho h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.tag {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 10px;
+    font-family: var(--fonte-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--vermelho);
+    border: 1px solid var(--branco);
+}
+.video-wrap { aspect-ratio: 16 / 9; background: #000; }
+.video-wrap iframe, .video-facade {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+.video-facade {
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    background: var(--grafite) center / cover no-repeat;
+}
+.video-facade .play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 72px;
+    height: 72px;
+    background: var(--vermelho);
+    border: 3px solid var(--branco);
+    border-radius: 50%;
+    box-shadow: 4px 4px 0 var(--preto);
+    transition: transform 0.15s ease;
+}
+.video-facade .play::after {
+    content: "";
+    position: absolute;
+    left: 28px;
+    top: 20px;
+    border-left: 22px solid var(--branco);
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+}
+.video-facade:hover .play { transform: scale(1.1); }
+ 
+@media (min-width: 760px) {
+    .trabalhos { grid-template-columns: 1fr 1fr; }
+    .destaque { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; }
+}
+ 
+/* ---------- Contato ---------- */
+.contato { padding: clamp(22px, 5vw, 44px); text-align: center; }
+.contato-chamada { font-size: 1.2rem; margin-bottom: 24px; }
+.redes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+ 
+/* ---------- Diálogo / formulário ---------- */
+dialog {
+    width: calc(100% - 32px);
+    max-width: 480px;
+    padding: 0;
+    color: var(--branco);
+    background: var(--grafite);
+    border: 2px solid var(--branco);
+    border-radius: var(--raio);
+    box-shadow: 8px 8px 0 var(--vermelho);
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.75); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.dialogo-corpo { padding: 24px; }
+.dialogo-topo { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.dialogo-topo h2 { font-family: var(--fonte-titulo); font-weight: 400; font-size: 2rem; text-transform: uppercase; }
+.fechar {
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--branco);
+    background: transparent;
+    border: 2px solid var(--branco);
+    border-radius: 6px;
+    cursor: pointer;
+}
+.fechar:hover { background: var(--vermelho); }
+ 
+.campo { margin-bottom: 18px; }
+.campo label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--fonte-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.campo input {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    font: inherit;
+    font-size: 1rem; /* 16px evita zoom automático no iOS */
+    color: var(--branco);
+    background: var(--preto);
+    border: 2px solid var(--borda-vidro);
+    border-radius: 6px;
+}
+.campo input::placeholder { color: #9d96ad; }
+.campo input[aria-invalid="true"] { border-color: var(--vermelho-txt); }
+.dica { margin-top: 4px; font-size: 0.85rem; color: #b8b1c8; }
+.erro { margin-top: 4px; min-height: 0; font-size: 0.9rem; color: var(--vermelho-txt); font-weight: 600; }
+.erro:empty { display: none; }
+.status { margin-top: 14px; font-size: 0.95rem; color: var(--roxo-claro); }
+.status:empty { display: none; }
+#form-contato .btn { width: 100%; }
+ 
+/* ---------- Rodapé ---------- */
+.rodape {
+    padding: 28px var(--gutter);
+    text-align: center;
+    font-family: var(--fonte-mono);
+    font-size: 0.8rem;
+    color: #b8b1c8;
+    border-top: 1px solid var(--borda-vidro);
+}
+ 
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .js .reveal { opacity: 1; transform: none; }
+}
