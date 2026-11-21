@@ -157,3 +157,123 @@ form.addEventListener('submit', (e) => {
     form.reset();
     window.location.href = url;
 });
+
+/* ============================================================
+   HABILIDADES — roda com scroll
+   Cole no fim do script.js (ou carregue como arquivo à parte).
+   Faz 3 coisas: desenha a engrenagem, calcula o progresso `--p`
+   a partir do scroll e marca qual card está ativo.
+   ============================================================ */
+(() => {
+    const secao = document.querySelector('.skills-secao');
+    if (!secao) return;
+
+    // Sem movimento reduzido e com suporte a cos() em translate: liga a roda.
+    // Caso contrário, o CSS base (grid de cards) continua valendo.
+    const reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const suportaRoda = CSS.supports('translate', 'calc(cos(10deg) * 1px)');
+    if (reduzido || !suportaRoda) return;
+
+    const palco = secao.querySelector('.skills-palco');
+    const cards = [...secao.querySelectorAll('.skill')];
+    const nav = document.querySelector('.topo');
+    const n = cards.length;
+    if (n < 2) return;
+
+    secao.classList.add('roda-on');
+
+    /* ---------- Ajustes ---------- */
+    // Fração de cada trecho em que a roda fica "travada" na habilidade, em cada ponta.
+    // 0.2 → a roda fica parada em 40% do scroll de cada habilidade e gira nos outros 60%.
+    const PAUSA = 0.2;
+
+    /* ---------- 1. Engrenagem ---------- */
+    // Quantidade de dentes = 360° / ângulo entre habilidades (--giro).
+    const giroGraus = parseFloat(getComputedStyle(secao).getPropertyValue('--giro')) || 24;
+    const dentes = Math.round(360 / giroGraus);
+
+    function caminhoEngrenagem(qtd, rPonta = 97, rBase = 83, rFuro = 32) {
+        const c = 100;
+        const passo = (2 * Math.PI) / qtd;
+        const pt = (r, a) => `${(c + r * Math.cos(a)).toFixed(2)} ${(c + r * Math.sin(a)).toFixed(2)}`;
+        let d = '';
+        let inicio = '';
+
+        for (let k = 0; k < qtd; k++) {
+            const a = k * passo - Math.PI / 2;
+            const p0 = pt(rBase, a - 0.30 * passo);
+            if (k === 0) { d += `M ${p0} `; inicio = p0; }
+            else { d += `A ${rBase} ${rBase} 0 0 1 ${p0} `; }
+            d += `L ${pt(rPonta, a - 0.15 * passo)} `;
+            d += `L ${pt(rPonta, a + 0.15 * passo)} `;
+            d += `L ${pt(rBase, a + 0.30 * passo)} `;
+        }
+        d += `A ${rBase} ${rBase} 0 0 1 ${inicio} Z `;
+
+        // furo central (o fill-rule evenodd do mask faz o buraco)
+        d += `M ${c + rFuro} ${c} A ${rFuro} ${rFuro} 0 1 0 ${c - rFuro} ${c} A ${rFuro} ${rFuro} 0 1 0 ${c + rFuro} ${c} Z`;
+        return d;
+    }
+
+    const d = caminhoEngrenagem(dentes);
+    const svgMascara =
+        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path fill-rule='evenodd' d='${d}'/></svg>`;
+    secao.style.setProperty('--mascara', `url("data:image/svg+xml,${encodeURIComponent(svgMascara)}")`);
+    const contorno = secao.querySelector('#gear-path');
+    if (contorno) contorno.setAttribute('d', d);
+
+    /* ---------- 2. Progresso com pausa ---------- */
+    // raw vai de 0 a n-1 em linha reta. Aqui ele ganha "degraus suaves":
+    // perto de cada número inteiro o valor fica parado (a roda trava),
+    // e entre eles passa por uma curva suave (smoothstep).
+    function comPausa(raw) {
+        const i = Math.floor(raw);
+        const f = raw - i;
+        let t = (f - PAUSA) / (1 - 2 * PAUSA);
+        t = Math.min(1, Math.max(0, t));
+        t = t * t * (3 - 2 * t);
+        return i + t;
+    }
+
+    /* ---------- 3. Scroll → --p ---------- */
+    let ativoAnterior = -1;
+    let agendado = false;
+
+    function atualizar() {
+        agendado = false;
+
+        const navAlt = nav ? nav.offsetHeight : 57;
+        secao.style.setProperty('--altura-nav', navAlt + 'px');
+
+        // Quanto da seção já "passou" desde que o palco grudou no topo
+        const total = secao.offsetHeight - palco.offsetHeight;
+        const rolado = navAlt - secao.getBoundingClientRect().top;
+        const prog = total > 0 ? Math.min(1, Math.max(0, rolado / total)) : 0;
+
+        const p = comPausa(prog * (n - 1));
+        palco.style.setProperty('--p', p.toFixed(3));
+
+        // Card ativo = o mais próximo do centro
+        const ativo = Math.round(p);
+        if (ativo !== ativoAnterior) {
+            cards.forEach((card, i) => {
+                const ligado = i === ativo;
+                card.classList.toggle('ativa', ligado);
+                if (ligado) card.setAttribute('aria-current', 'true');
+                else card.removeAttribute('aria-current');
+            });
+            ativoAnterior = ativo;
+        }
+    }
+
+    function pedir() {
+        if (!agendado) {
+            agendado = true;
+            requestAnimationFrame(atualizar);
+        }
+    }
+
+    addEventListener('scroll', pedir, { passive: true });
+    addEventListener('resize', pedir);
+    atualizar();
+})();

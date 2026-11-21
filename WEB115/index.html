@@ -30,7 +30,7 @@
             <h1>Yann <span>Escobar</span></h1>
         </section>
 
-        <section>
+        <section class="hero-info">
             <div class="container">
                 <p class="sub">Editor</p>
                 <p class="lema">Imagine Sísifo feliz!</p>
@@ -44,16 +44,15 @@
         <!-- 1. QUEM SOU EU -->
         <section class="secao" id="quem-sou" aria-labelledby="t-quem">
             <div class="container reveal">
-                <p class="kicker">01 // perfil</p>
                 <h2 class="titulo-secao" id="t-quem">Quem sou eu</h2>
  
                 <div class="quem">
                     <div class="vidro quem-texto">
-                        <p>Tenho 19 anos e edito vídeo com a cabeça de quem começou fazendo jogos: cada corte precisa de ritmo e cada cena, de intenção.</p>
-                        <p>Passei pelo front-end e pelo design de interfaces, e hoje junto tudo isso na edição: direção visual, motion, som e narrativa. Não busco o vídeo “bonitinho”. Busco o que prende e faz sentir alguma coisa.</p>
+                        <p>Tenho 19 anos e edito vídeos, sou entusiasta de cinema, e busco transmitir isso no meu trabalho, com cortes, efeitos e identidade visual única, para contar qualquer hitória que você imagine.</p>
+                        <p>Além de editor sou programador "front-end", e uso esse conhecimento na edição: direção visual, motion, som e narrativa, focando sempre na autenticidade.</p>
                         <ul class="chips" aria-label="Posicionamento">
                             <li>Ritmo</li>
-                            <li>Estética autoral</li>
+                            <li>Estética única</li>
                             <li>Narrativa</li>
                         </ul>
                     </div>
@@ -63,69 +62,73 @@
         </section>
  
         <!-- 2. HABILIDADES -->
-        <section class="secao" id="habilidades" aria-labelledby="t-hab">
-            <div class="container reveal">
-                <h2 class="titulo-secao" id="t-hab">Minhas habilidades</h2>
- 
-                <ul class="skills">
-
-                    <li class="skill vidro" data-tilt style="--nivel:90">
-                        <span class="skill-num" aria-hidden="true">01</span>
+        <section class="secao skills-secao" id="habilidades" aria-labelledby="t-hab" style="--n: 6">
+            <div class="skills-palco">
+                <div class="skills-cabeca container">
+                    <h2 class="titulo-secao" id="t-hab">Minhas habilidades</h2>
+                </div>
+        
+                <!-- Engrenagem de vidro (decorativa). O formato é desenhado pelo JS. -->
+                <div class="engrenagem" aria-hidden="true">
+                    <div class="engrenagem-vidro"></div>
+                    <svg class="engrenagem-contorno" viewBox="0 0 200 200" focusable="false">
+                        <path id="gear-path"></path>
+                    </svg>
+                </div>
+        
+                <div class="skills-lista container">
+                    <ul class="skills">
+                        <!-- --i = posição do card na roda (0, 1, 2...). --nivel = proficiência. -->
+                        <li class="skill vidro" style="--i: 0; --nivel: 90">
+                            <span class="skill-num" aria-hidden="true">01</span>
+                            <h3>Premiere Pro</h3>
+                            <div class="barra" aria-hidden="true"><i></i></div>
+                            <p class="nivel">Nível: <strong>90</strong>/100</p>
+                        </li>
                         
-                        <h3>Premiere Pro</h3>
-                        
-                        <div class="barra" aria-hidden="true"><i></i></div>
-                        <p class="nivel">Nível: <strong>90</strong>/100</p>
-                    </li>
+                        <li class="skill vidro" style="--i: 1; --nivel: 70">
+                            <span class="skill-num" aria-hidden="true">02</span>
+                            <h3>After Effects</h3>
+                            <div class="barra" aria-hidden="true"><i></i></div>
+                            <p class="nivel">Nível: <strong>50</strong>/100</p>
+                        </li>
 
-                    <li class="skill vidro" data-tilt style="--nivel:70">
-                        <span class="skill-num" aria-hidden="true">02</span>
-                        
-                        <h3>After Effects</h3>
-                        
-                        <div class="barra" aria-hidden="true"><i></i></div>
-                        <p class="nivel">Nível: <strong>70</strong>/100</p>
-                    </li>
+                        <li class="skill vidro" style="--i: 2; --nivel: 65">
+                            <span class="skill-num" aria-hidden="true">03</span>
+                            <h3>Color grading</h3>
+                            <div class="barra" aria-hidden="true"><i></i></div>
+                            <p class="nivel">Nível: <strong>65</strong>/100</p>
+                        </li>
 
-                    <li class="skill vidro" data-tilt style="--nivel:35">
-                        <span class="skill-num" aria-hidden="true">03</span>
-                        
-                        <h3>Davinci Resolve</h3>
-                        
-                        <div class="barra" aria-hidden="true"><i></i></div>
-                        <p class="nivel">Nível: <strong>35</strong>/100</p>
-                    </li>
+                        <li class="skill vidro" style="--i: 3; --nivel: 60">
+                            <span class="skill-num" aria-hidden="true">04</span>
+                            <h3>Edição de áudio</h3>
+                            <div class="barra" aria-hidden="true"><i></i></div>
+                            <p class="nivel">Nível: <strong>80</strong>/100</p>
+                        </li>
 
-                    <li class="skill vidro" data-tilt style="--nivel:80">
-                        <span class="skill-num" aria-hidden="true">04</span>
-
-                        <h3>Edição de áudio</h3>
-
-                        <div class="barra" aria-hidden="true"><i></i></div>
-                        <p class="nivel">Nível: <strong>80</strong>/100</p>
-                    </li>
-
-                    <li class="skill vidro" data-tilt style="--nivel:35">
-                        <span class="skill-num" aria-hidden="true">05</span>
-                        <h3>Motion & Animações</h3>
-                        <div class="barra" aria-hidden="true"><i></i></div>
-                        <p class="nivel">Nível: <strong>35</strong>/100</p>
-                    </li>
-
-                    <li class="skill vidro" data-tilt style="--nivel:60">
-                        <span class="skill-num" aria-hidden="true">06</span>
-                        <h3>Roteiro e storytelling</h3>
-                        <div class="barra" aria-hidden="true"><i></i></div>
-                        <p class="nivel">Nível: <strong>60</strong>/100</p>
-                    </li>
-                </ul>
+                        <li class="skill vidro" style="--i: 4; --nivel: 75">
+                            <span class="skill-num" aria-hidden="true">05</span>
+                            <h3>Motion e texto cinético</h3>
+                            <div class="barra" aria-hidden="true"><i></i></div>
+                            <p class="nivel">Nível: <strong>40</strong>/100</p>
+                        </li>
+                        <li class="skill vidro" style="--i: 5; --nivel: 80">
+                            <span class="skill-num" aria-hidden="true">06</span>
+                            <h3>Roteiro e storytelling</h3>
+                            <div class="barra" aria-hidden="true"><i></i></div>
+                            <p class="nivel">Nível: <strong>80</strong>/100</p>
+                        </li>
+                    </ul>
+                </div>
+        
             </div>
         </section>
  
-        <!-- 3. PARA QUEM JÁ TRABALHEI -->
+        <!-- 3. MEUS TRABALHOS -->
         <section class="secao" id="trabalhos" aria-labelledby="t-trab">
             <div class="container reveal">
-                <h2 class="titulo-secao" id="t-trab">Para quem eu já trabalhei</h2>
+                <h2 class="titulo-secao" id="t-trab">Meus Trabalhos</h2>
  
                 <div class="trabalhos">
                     <!-- Destaque com vídeo (troque o data-video-id pelo ID do vídeo) -->
@@ -141,7 +144,7 @@
                         <div class="trabalho-info">
                             <p class="tag">Projeto próprio</p>
                             <h3>Meu canal no YouTube</h3>
-                            <p>Criei o canal para documentar trabalhos e falar do que me interessa. Atuo como editor e criador de conteúdo, da ideia visual até a experiência final de quem assiste.</p>
+                            <p>Criei o canal para aprimorar habilidades e falar do que eu gosto. Nesse canal sempre busco extrair o máximo do meu potencial.</p>
                         </div>
                     </article>
  
@@ -149,9 +152,9 @@
                     <article class="trabalho vidro">
                         <div class="trabalho-info">
                             <p class="tag">Cliente</p>
-                            <h3>[Nome do cliente / marca]</h3>
+                            <h3>R1beiro</h3>
                             <p><strong>O que fiz:</strong> [ex.: edição de 12 vídeos curtos para Reels e Shorts].</p>
-                            <p><strong>Resultado:</strong> [ex.: +40% de retenção média].</p>
+                            <p><strong>O que eu aprendi:</strong> [ex.: +40% de retenção média].</p>
                         </div>
                     </article>
  
@@ -169,7 +172,7 @@
  
         <!-- 4. CONTATO -->
         <section class="secao" id="contato" aria-labelledby="t-contato">
-            <div class="container reveal">
+            <div class="container-reveal">
                 <h2 class="titulo-secao" id="t-contato">Contato</h2>
  
                 <div class="contato vidro">
@@ -225,6 +228,6 @@
         </div>
     </dialog>
  
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

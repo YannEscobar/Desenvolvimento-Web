@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Medula+One&family=Pirata+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Medula+One&display=swap');
 /* ============================================================
-   PORTFÓLIO — Yann Escobar (editor de vídeo)
-   Mobile-first. Cores e fontes ficam nas variáveis abaixo.
-   ============================================================ */
+   PORTFÓLIO — Yann Escobar
+   ============================================================ 
+*/
  
 :root {
     --preto: #0b0a0f;
@@ -49,13 +49,15 @@ ul { list-style: none; margin: 0; padding: 0; }
 h1, h2, h3, p { margin: 0; }
 p + p { margin-top: 0.9em; }
  
+
+
 .container {
     width: 100%;
     max-width: 1100px;
     margin-inline: auto;
     padding-inline: var(--gutter);
 }
- 
+
 .pular {
     position: absolute;
     left: 8px;
@@ -75,16 +77,28 @@ p + p { margin-top: 0.9em; }
     outline-offset: 3px;
 }
  
-/* ---------- Vidro ---------- */
+/*
+================
+EFEITO DE VIDRO
+================
+*/
 .vidro {
     position: relative;
     background:
+
+        /* Efeito de highlight*/
         linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 45%),
+        
         var(--vidro);
+        /* Transparência */
+
     border: 1px solid var(--borda-vidro);
     border-radius: var(--raio);
+    
+    /* Blur */
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
+    
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 30px rgba(0, 0, 0, 0.35);
 }
  
@@ -117,7 +131,11 @@ p + p { margin-top: 0.9em; }
 .btn-vidro:hover { background: var(--roxo); }
 .btn-grande { min-height: 56px; font-size: 1.05rem; padding-inline: 32px; }
  
-/* ---------- Navegação ---------- */
+/*
+============================
+            NAV
+============================
+*/
 .topo {
     position: sticky;
     top: 0;
@@ -127,6 +145,7 @@ p + p { margin-top: 0.9em; }
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--borda-vidro);
 }
+
 .nav {
     display: flex;
     align-items: center;
@@ -136,6 +155,10 @@ p + p { margin-top: 0.9em; }
 }
 
 .nav ul { display: flex; gap: 2px; }
+
+/*
+    Logo do nav substituir por .svg
+*/
 
 .logo {
     font-family: var(--fonte-titulo);
@@ -158,6 +181,13 @@ p + p { margin-top: 0.9em; }
 .nav a:not(.logo):hover { background: var(--vermelho); }
 .nav a[aria-current="true"] { background: var(--vermelho); }
  
+
+/*
+=============================
+    RESPONSIVIDADE DO NAV
+=============================
+*/
+
 @media (max-width: 480px) {
     .logo { display: none; }
     .nav { justify-content: center; }
@@ -165,8 +195,12 @@ p + p { margin-top: 0.9em; }
 @media (min-width: 700px) {
     .nav a:not(.logo) { font-size: 0.85rem; padding-inline: 16px; }
 }
- 
-/* ---------- Hero ---------- */
+
+/* 
+===================
+        HERO 
+===================
+*/
 .hero {
     position: relative;
     overflow: visible;
@@ -212,15 +246,20 @@ h1 {
     position: relative;
     z-index: 2;
 }
-
-.container{
+/*
+    Elementos abaixo do meu nome e acima do "Quem sou eu"
+*/
+.hero-info .container{
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding-top: 20px;
+    padding-top: 30px;
+    text-align: right;
 }
 
+/* ELemento do "Editor"*/
 .sub {
-    margin-top: 18px;
+    margin-top: 40px;
     display: inline-block;
     background: linear-gradient(364deg, var(--roxo-esc), var(--grafite));
     border-radius: 4px;
@@ -239,25 +278,27 @@ h1 {
     margin-top: 14px;
     font-size: 1.2rem;
     color: var(--roxo-claro);
+    max-width: 28ch;
 }
 .acoes {
+    justify-content: flex-end;
     margin-top: 28px;
     display: flex;
     flex-wrap: wrap;
     gap: 14px;
 }
  
-/* ---------- Seções ---------- */
+
+
+
+
+/* 
+    ----------
+     Seções 
+    -----------
+ */
 .secao { padding-block: clamp(56px, 10vw, 110px); }
  
-.kicker {
-    font-family: var(--fonte-mono);
-    font-size: 0.85rem;
-    color: var(--vermelho-txt);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 10px;
-}
 .titulo-secao {
     display: inline-block;
     margin-bottom: 36px;
@@ -277,6 +318,7 @@ h1 {
 .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .js .reveal.visible { opacity: 1; transform: none; }
  
+
 /* ---------- Quem sou eu ---------- */
 .quem {
     display: grid;
@@ -303,28 +345,31 @@ h1 {
     background: var(--roxo);
     border: 1px solid var(--branco);
 }
+
+/* 
+================================
+Responsividade da foto de perfil
+================================
+*/
 @media (min-width: 760px) {
     .quem { grid-template-columns: 1fr 240px; gap: 48px; }
     .foto { width: 240px; height: 240px; }
 }
- 
-/* ---------- Habilidades ---------- */
+
+
+/* ============================================================
+   HABILIDADES — roda com scroll
+   ============================================================ */
+
+/* ---------- BASE (fallback: grid de cards) ---------- */
 .skills {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 22px;
-    perspective: 900px;
 }
 .skill {
     padding: 22px 22px 18px;
-    transform: perspective(800px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotateZ(var(--rz, 0deg));
-    transition: transform 0.2s ease-out;
-    will-change: transform;
 }
-/* Inclinação fixa para toque / sem mouse */
-.skill:nth-child(odd)  { --rz: -1deg; }
-.skill:nth-child(even) { --rz: 1deg; }
- 
 .skill-num {
     position: absolute;
     right: 14px;
@@ -343,8 +388,6 @@ h1 {
     margin-bottom: 14px;
     padding-right: 48px;
 }
- 
-/* Barra de proficiência inclinada (estilo Persona) */
 .barra {
     height: 18px;
     background: var(--preto);
@@ -358,11 +401,8 @@ h1 {
     background: linear-gradient(90deg, var(--vermelho), #ff4d63);
     transform-origin: left center;
     transform: scaleX(calc(var(--nivel) / 100));
-    transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s;
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s;
 }
-.js .barra i { transform: scaleX(0); }
-.js .reveal.visible .barra i { transform: scaleX(calc(var(--nivel) / 100)); }
- 
 .nivel {
     margin-top: 10px;
     font-family: var(--fonte-mono);
@@ -370,7 +410,155 @@ h1 {
     color: #d9d3e6;
 }
 .nivel strong { color: var(--branco); }
- 
+
+.engrenagem { display: none; }
+
+
+
+/* ---------- RODA LIGADA (classe .roda-on posta pelo JS) ---------- */
+
+.skills-secao.roda-on {
+    /* >>> botões de ajuste <<< */
+    --altura-nav: 57px;                  /* o JS corrige com a altura real */
+    --passo: 75vh;                       /* quanto de scroll "custa" cada habilidade */
+    --raio-roda: min(60vw, 750px);            /* raio do arco dos cards */
+    --raio-y: var(--raio-roda);               /* espaçamento vertical entre cards (maior = mais separados) */
+    --giro: 24deg;                       /* ângulo entre uma habilidade e a próxima */
+    --cx: calc(var(--raio-roda) * -0.3);      /* centro da roda (negativo = fora da tela) */
+
+    padding: 0;
+    /* altura = um palco + o scroll total das habilidades */
+    height: calc(100svh - var(--altura-nav) + (var(--n) - 1) * var(--passo));
+}
+
+.roda-on .skills-palco {
+    position: sticky;
+    top: var(--altura-nav);
+    height: calc(100svh - var(--altura-nav));
+    overflow: hidden; /* ok aqui: é o próprio elemento sticky, não um ancestral dele */
+}
+
+
+/* Manchas coloridas atrás, para o vidro da engrenagem ter o que borrar */
+.roda-on .skills-palco::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(circle at var(--cx) 50%, rgba(225, 6, 44, 0.55), transparent 38%),
+        radial-gradient(circle at calc(var(--cx) + 22vw) 18%, rgba(70, 14, 14, 0.5), transparent 34%),
+        radial-gradient(circle at calc(var(--cx) + 8vw) 88%, rgba(133, 43, 217, 0.4), transparent 30%);
+}
+
+.roda-on .skills-cabeca {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+.roda-on .skills-cabeca .titulo-secao { margin-bottom: 0; }
+
+/* -----
+    Engrenagem de vidro
+ ----- */
+.roda-on .engrenagem {
+    display: block;
+    position: absolute;
+    left: var(--cx);
+    top: 50%;
+    z-index: 1;
+    width: calc(var(--raio-roda) * 1.6);
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    rotate: calc(var(--p, 0) * var(--giro) * -1); /* gira junto com o scroll */
+    pointer-events: none;
+}
+.engrenagem-vidro {
+    position: absolute;
+    inset: 0;
+    background:
+        conic-gradient(from 0deg,
+            rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.06) 20%,
+            rgba(255, 255, 255, 0.3) 38%, rgba(255, 255, 255, 0.04) 60%,
+            rgba(255, 255, 255, 0.32) 80%, rgba(255, 255, 255, 0.38)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 50%);
+    -webkit-backdrop-filter: blur(10px) saturate(1.4);
+    backdrop-filter: blur(10px) saturate(1.4);
+    -webkit-mask: var(--mascara) center / contain no-repeat;
+    mask: var(--mascara) center / contain no-repeat;
+}
+.engrenagem-contorno {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+.engrenagem-contorno path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.65);
+    stroke-width: 1.2;
+    vector-effect: non-scaling-stroke;
+}
+
+/* -----
+Cards na roda
+----- */
+.roda-on .skills-lista {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+}
+.roda-on .skills { display: block; }
+
+.roda-on .skill {
+    /* distância até o centro: 0 = ativo, ±1 = vizinho, etc. */
+    --d: calc(var(--i) - var(--p, 0));
+    --dist: max(var(--d), calc(var(--d) * -1));
+    --foco: max(0, calc(1 - var(--dist)));   /* 1 no centro → 0 a 1 de distância */
+    --ang: calc(var(--d) * var(--giro));
+
+    position: absolute;
+    left: var(--cx);
+    top: 50%;
+    width: min(520px, calc(100vw - var(--cx) - var(--raio-roda) - 2 * var(--gutter)));
+    transform-origin: left center;
+
+    /* posição no arco (trigonometria direto no CSS) */
+    translate: calc(cos(var(--ang)) * var(--raio-roda)) calc(sin(var(--ang)) * var(--raio-y) - 50%);
+    /* inclinação leve; o ativo fica em -2deg */
+    rotate: calc(var(--d) * 3deg - 2deg);
+    /* destaque: o ativo é maior, mais opaco e mais saturado */
+    scale: calc(0.8 + 0.2 * var(--foco));
+    opacity: clamp(0.42, calc(1 - var(--dist) * 0.28), 1);
+    filter: saturate(calc(0.35 + 0.65 * var(--foco))) brightness(calc(0.75 + 0.25 * var(--foco)));
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.roda-on .skill.ativa {
+    z-index: 2;
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 0 0 1px var(--vermelho), 0 16px 44px rgba(225, 6, 44, 0.4);
+}
+
+/* A barra "carrega" quando o card vira o ativo e esvazia quando sai */
+.roda-on .barra i { transform: scaleX(0); }
+.roda-on .skill.ativa .barra i { transform: scaleX(calc(var(--nivel) / 100)); }
+
+@media (max-width: 600px) {
+    .skills-secao.roda-on { --passo: 60vh; --raio-y: 300px; }
+    .roda-on .skill { padding: 14px 16px 12px; }
+    .roda-on .skill h3 { font-size: 1.15rem; margin-bottom: 10px; padding-right: 30px; }
+    .roda-on .skill-num { font-size: 1.8rem; }
+    .roda-on .nivel { font-size: 0.78rem; margin-top: 6px; }
+}
+
 /* ---------- Trabalhos ---------- */
 .trabalhos { display: grid; gap: 22px; }
 .trabalho { overflow: hidden; }
