@@ -280,22 +280,10 @@ h1 {
     color: var(--roxo-claro);
     max-width: 28ch;
 }
-.acoes {
-    justify-content: flex-end;
-    margin-top: 28px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-}
- 
-
-
-
-
 /* 
-    ----------
+    ===========
      Seções 
-    -----------
+    ===========
  */
 .secao { padding-block: clamp(56px, 10vw, 110px); }
  
@@ -419,12 +407,12 @@ Responsividade da foto de perfil
 
 .skills-secao.roda-on {
     /* >>> botões de ajuste <<< */
-    --altura-nav: 57px;                  /* o JS corrige com a altura real */
-    --passo: 75vh;                       /* quanto de scroll "custa" cada habilidade */
-    --raio-roda: min(60vw, 750px);            /* raio do arco dos cards */
-    --raio-y: var(--raio-roda);               /* espaçamento vertical entre cards (maior = mais separados) */
-    --giro: 24deg;                       /* ângulo entre uma habilidade e a próxima */
-    --cx: calc(var(--raio-roda) * -0.3);      /* centro da roda (negativo = fora da tela) */
+    --altura-nav: 57px;                  /* o Javascript corrige com a altura real */
+    --passo: 70vh;                       /* quanto de scroll "custa" cada card de habilidade */
+    --raio-roda: min(60vw, 680px);            /* raio do arco dos cards */
+    --raio-y: var(--raio-roda);               /* espaçamento vertical entre cards, feito para a responsividade mobile */
+    --giro: 28deg;                       /* ângulo entre uma habilidade e a próxima */
+    --cx: calc(var(--raio-roda) * -0.2);      /* centro da roda (negativo = fora da tela) */
 
     padding: 0;
     /* altura = um palco + o scroll total das habilidades */
@@ -438,8 +426,7 @@ Responsividade da foto de perfil
     overflow: hidden; /* ok aqui: é o próprio elemento sticky, não um ancestral dele */
 }
 
-
-/* Manchas coloridas atrás, para o vidro da engrenagem ter o que borrar */
+/* Manchas coloridas atrás da engrenagem*/
 .roda-on .skills-palco::before {
     content: "";
     position: absolute;
@@ -485,8 +472,8 @@ Responsividade da foto de perfil
             rgba(255, 255, 255, 0.3) 38%, rgba(255, 255, 255, 0.04) 60%,
             rgba(255, 255, 255, 0.32) 80%, rgba(255, 255, 255, 0.38)),
         linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 50%);
-    -webkit-backdrop-filter: blur(10px) saturate(1.4);
-    backdrop-filter: blur(10px) saturate(1.4);
+    -webkit-backdrop-filter: blur(12px) saturate(1.4);
+    backdrop-filter: blur(12px) saturate(1.4);
     -webkit-mask: var(--mascara) center / contain no-repeat;
     mask: var(--mascara) center / contain no-repeat;
 }
@@ -504,9 +491,11 @@ Responsividade da foto de perfil
     vector-effect: non-scaling-stroke;
 }
 
-/* -----
+/* 
+-----
 Cards na roda
------ */
+----- 
+*/
 .roda-on .skills-lista {
     position: absolute;
     inset: 0;
@@ -559,8 +548,17 @@ Cards na roda
     .roda-on .nivel { font-size: 0.78rem; margin-top: 6px; }
 }
 
-/* ---------- Trabalhos ---------- */
-.trabalhos { display: grid; gap: 22px; }
+/* 
+==============
+    Trabalhos
+==============
+*/
+.trabalhos 
+{
+     display: grid;
+     gap: clamp(32px, 3vw, 48px);
+        /*Clamp recebe min, valor ideal e máximo*/
+}
 .trabalho { overflow: hidden; }
 .trabalho-info { padding: 22px; }
 .trabalho h3 {
@@ -570,6 +568,7 @@ Cards na roda
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+
 .tag {
     display: inline-block;
     margin-bottom: 10px;
@@ -581,6 +580,7 @@ Cards na roda
     background: var(--vermelho);
     border: 1px solid var(--branco);
 }
+
 .video-wrap { aspect-ratio: 16 / 9; background: #000; }
 .video-wrap iframe, .video-facade {
     width: 100%;
@@ -617,12 +617,11 @@ Cards na roda
 }
 .video-facade:hover .play { transform: scale(1.1); }
  
-@media (min-width: 760px) {
-    .trabalhos { grid-template-columns: 1fr 1fr; }
-    .destaque { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; }
-}
- 
-/* ---------- Contato ---------- */
+/* 
+===========
+ Contato 
+===========
+ */
 .contato { padding: clamp(22px, 5vw, 44px); text-align: center; }
 .contato-chamada { font-size: 1.2rem; margin-bottom: 24px; }
 .redes {

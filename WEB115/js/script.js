@@ -1,21 +1,20 @@
 /* ============================================================
    PORTFÓLIO — comportamento
-   1. Revelação ao rolar + barras de skill
-   2. Tilt nos cards (só com mouse e sem "reduzir movimento")
-   3. Scroll-spy da navegação
-   4. Vídeos do YouTube sob demanda (facade)
-   5. Formulário em <dialog> com validação
    ============================================================ */
  
 // Troque pelo seu e-mail real
-const EMAIL_DESTINO = 'seuemail@exemplo.com';
+const EMAIL_DESTINO = 'yann.campos.prof@gmail.com';
  
 document.documentElement.classList.add('js');
  
 const reduzMovimento = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const temMouse = matchMedia('(hover: hover) and (pointer: fine)').matches;
  
-/* ---------- 1. Revelação ao rolar ---------- */
+/* 
+---------- 
+Fade-in ao rolar
+---------- 
+*/
 const revelaveis = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && !reduzMovimento) {
     const obsReveal = new IntersectionObserver((entradas) => {
@@ -31,7 +30,7 @@ if ('IntersectionObserver' in window && !reduzMovimento) {
     revelaveis.forEach((el) => el.classList.add('visible'));
 }
  
-/* ---------- 2. Tilt ---------- */
+/* ---------- Tilt ---------- */
 if (temMouse && !reduzMovimento) {
     document.querySelectorAll('[data-tilt]').forEach((el) => {
         el.addEventListener('pointermove', (e) => {
@@ -71,8 +70,6 @@ if ('IntersectionObserver' in window) {
         if (el) obsNav.observe(el);
     });
 }
- 
-/* ---------- 4. YouTube sob demanda ---------- */
 document.querySelectorAll('.video-facade').forEach((btn) => {
     const id = btn.dataset.videoId;
     btn.style.backgroundImage = `url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)`;
@@ -88,7 +85,7 @@ document.querySelectorAll('.video-facade').forEach((btn) => {
     });
 });
  
-/* ---------- 5. Formulário ---------- */
+/* ---------- Formulário ---------- */
 const dialogo = document.getElementById('dialogo-contato');
 const btnAbrir = document.getElementById('abrir-form');
 const form = document.getElementById('form-contato');
@@ -159,9 +156,8 @@ form.addEventListener('submit', (e) => {
 });
 
 /* ============================================================
-   HABILIDADES — roda com scroll
-   Cole no fim do script.js (ou carregue como arquivo à parte).
-   Faz 3 coisas: desenha a engrenagem, calcula o progresso `--p`
+   HABILIDADES — roda com scroll e desenha a engrenagem. Calcula o
+   progresso com `--p`
    a partir do scroll e marca qual card está ativo.
    ============================================================ */
 (() => {

@@ -34,10 +34,6 @@
             <div class="container">
                 <p class="sub">Editor</p>
                 <p class="lema">Imagine Sísifo feliz!</p>
-                <div class="acoes">
-                    <a class="btn btn-vermelho" href="#trabalhos">Ver trabalhos</a>
-                    <a class="btn btn-vidro" href="#contato">Falar comigo</a>
-                </div>
             </div>
         </section>
  
@@ -56,7 +52,7 @@
                             <li>Narrativa</li>
                         </ul>
                     </div>
-                    <img class="foto" src="assets/images/pfpY.jpg" alt="Retrato de Yann Escobar" width="220" height="220" loading="lazy">
+                    <img class="foto" src="img/PfpY.jpeg" alt="Retrato de Yann Escobar" width="220" height="220" loading="lazy">
                 </div>
             </div>
         </section>
@@ -68,7 +64,7 @@
                     <h2 class="titulo-secao" id="t-hab">Minhas habilidades</h2>
                 </div>
         
-                <!-- Engrenagem de vidro (decorativa). O formato é desenhado pelo JS. -->
+                <!-- Engrenagem de vidro. O formato é desenhado pelo script. -->
                 <div class="engrenagem" aria-hidden="true">
                     <div class="engrenagem-vidro"></div>
                     <svg class="engrenagem-contorno" viewBox="0 0 200 200" focusable="false">
@@ -86,7 +82,7 @@
                             <p class="nivel">Nível: <strong>90</strong>/100</p>
                         </li>
                         
-                        <li class="skill vidro" style="--i: 1; --nivel: 70">
+                        <li class="skill vidro" style="--i: 1; --nivel: 50">
                             <span class="skill-num" aria-hidden="true">02</span>
                             <h3>After Effects</h3>
                             <div class="barra" aria-hidden="true"><i></i></div>
@@ -100,16 +96,16 @@
                             <p class="nivel">Nível: <strong>65</strong>/100</p>
                         </li>
 
-                        <li class="skill vidro" style="--i: 3; --nivel: 60">
+                        <li class="skill vidro" style="--i: 3; --nivel: 75">
                             <span class="skill-num" aria-hidden="true">04</span>
                             <h3>Edição de áudio</h3>
                             <div class="barra" aria-hidden="true"><i></i></div>
-                            <p class="nivel">Nível: <strong>80</strong>/100</p>
+                            <p class="nivel">Nível: <strong>75</strong>/100</p>
                         </li>
 
-                        <li class="skill vidro" style="--i: 4; --nivel: 75">
+                        <li class="skill vidro" style="--i: 4; --nivel: 40">
                             <span class="skill-num" aria-hidden="true">05</span>
-                            <h3>Motion e texto cinético</h3>
+                            <h3>Motion e Animação</h3>
                             <div class="barra" aria-hidden="true"><i></i></div>
                             <p class="nivel">Nível: <strong>40</strong>/100</p>
                         </li>
@@ -131,39 +127,58 @@
                 <h2 class="titulo-secao" id="t-trab">Meus Trabalhos</h2>
  
                 <div class="trabalhos">
-                    <!-- Destaque com vídeo (troque o data-video-id pelo ID do vídeo) -->
-                    <article class="trabalho vidro destaque">
+                    <article class="trabalho vidro">
                         <div class="video-wrap">
                             <button class="video-facade" type="button"
                                     data-video-id="N-sZhAeKcjs"
-                                    data-title="Vídeo do canal de Yann no YouTube"
-                                    aria-label="Reproduzir vídeo: canal de Yann no YouTube">
+                                    data-title="Vídeo do canal YannOproprio, formato de gameplay no YouTube"
+                                    aria-label="Reproduzir vídeo: YannOproprio Gameplay">
                                 <span class="play" aria-hidden="true"></span>
                             </button>
                         </div>
+
                         <div class="trabalho-info">
                             <p class="tag">Projeto próprio</p>
                             <h3>Meu canal no YouTube</h3>
                             <p>Criei o canal para aprimorar habilidades e falar do que eu gosto. Nesse canal sempre busco extrair o máximo do meu potencial.</p>
                         </div>
                     </article>
- 
-                    <!-- Placeholders: substitua pelos seus clientes reais -->
+
+                    <!-- Segundo vídeo-->
+
                     <article class="trabalho vidro">
+                        <div class="video-wrap">
+                            <button class="video-facade" type="button"
+                                data-video-id="9FY46G49OEM"
+                                data-title="Vídeo do canal R1beiro, formato fandublagem"
+                                aria-label="Reproduzir vídeo: R1beiro Fandublagem Bill Cipher">
+                                <span class="play" aria-hidden="true"></span>
+                            </button>
+                        </div>
+
                         <div class="trabalho-info">
-                            <p class="tag">Cliente</p>
-                            <h3>R1beiro</h3>
-                            <p><strong>O que fiz:</strong> [ex.: edição de 12 vídeos curtos para Reels e Shorts].</p>
-                            <p><strong>O que eu aprendi:</strong> [ex.: +40% de retenção média].</p>
+                            <p class="tag">Vídeo longo</p> <!-- Tag depois Título e breve descrição para deixar o site enchuto -->
+                            <h3>Fandublagem com Modulação de voz</h3>
+                            <p>Nesse breve projeto meu desafio foi modular a voz do cliente com o personagem "Bill Cipher", desenvolvi um método de modulação de voz utilizando o software "Audacity".</p>
                         </div>
                     </article>
- 
+
+                    <!-- Terceiro vídeo-->
+
                     <article class="trabalho vidro">
+                        <div class="video-wrap">
+                            <button class="video-facade" type="button"
+                                data-video-id="-D0G8o2I0ZQ"
+                                data-title="Vídeo do canal R1beiro, formato fandublagem"
+                                aria-label="Reproduzir vídeo: R1beiro Fandublagem Bode Japeth">
+                                <span class="play" aria-hidden="true"></span>
+                            </button>
+                        </div>
+
                         <div class="trabalho-info">
-                            <p class="tag">Cliente</p>
-                            <h3>[Nome do cliente / marca]</h3>
-                            <p><strong>O que fiz:</strong> [ex.: vídeo institucional com motion graphics].</p>
-                            <p><strong>Resultado:</strong> [ex.: usado na campanha de lançamento].</p>
+                            <p class="tag">Vídeo Longo</p>
+                                <h3>Fandublagem de Musical</h3>
+                                <p>Nesse cenário meu desafio foi tratar e mixar a voz do cliente, para atingir o mesmo resultado que a produção inicial.</p>
                         </div>
                     </article>
                 </div>
